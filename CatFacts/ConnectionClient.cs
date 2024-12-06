@@ -9,17 +9,20 @@ namespace CatFacts
 {
     public class ConnectionClient
     {
+        private HttpClient client;
+
+        public ConnectionClient(HttpClient client)
+        {
+            this.client = client;
+        }
+
         public CatFact GetRandomFact()
         {
             CatFact fact;
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("https://catfact.ninja");
 
-                var response = client.GetAsync("fact").Result;
-                response.EnsureSuccessStatusCode();
-                fact = response.Content.ReadFromJsonAsync<CatFact>().Result;
-            }
+            var response = client.GetAsync("fact").Result;
+            response.EnsureSuccessStatusCode();
+            fact = response.Content.ReadFromJsonAsync<CatFact>().Result;
 
             return fact;
         }

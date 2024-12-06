@@ -7,7 +7,11 @@
             FileManager.Filename = "catfacts.txt";
             FileManager.Filepath = "./";
 
-            ConnectionClient client = new ConnectionClient();
+
+            HttpClient http = new HttpClient();
+            http.BaseAddress = new Uri("https://catfact.ninja");
+
+            ConnectionClient client = new ConnectionClient(http);
 
             bool breakOut = false;
             while(true)
@@ -34,6 +38,7 @@
                 }
             }
 
+            http.Dispose();
             Console.WriteLine("Program has ended");
         }
 
