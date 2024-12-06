@@ -22,7 +22,7 @@ namespace CatFacts
             {
                 var response = client.GetAsync("fact").Result;
                 response.EnsureSuccessStatusCode();
-                fact = response.Content.ReadFromJsonAsync<CatFact>().Result;
+                fact = response.Content.ReadFromJsonAsync<CatFact>().Result!;
             }
             catch (Exception ex)
             {
