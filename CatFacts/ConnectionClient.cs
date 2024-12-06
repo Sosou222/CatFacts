@@ -26,7 +26,7 @@ namespace CatFacts
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                //Console.WriteLine(ex.Message);
                 fact = new CatFact()
                 {
                     Fact = "Invalid",
