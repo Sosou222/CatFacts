@@ -4,7 +4,9 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            FileManager fileManager = new FileManager();
+            fileManager.Write("Test");
+            fileManager.DebugReadFile();
         }
     }
 }
