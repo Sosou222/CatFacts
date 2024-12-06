@@ -16,15 +16,22 @@ namespace CatFacts
             this.client = client;
         }
 
-        public CatFact GetRandomFact()
+        public bool TryGetRandomFact(out CatFact fact)
         {
-            CatFact fact;
+            try
+            {
+                var response = client.GetAsync("fact").Result;
+                response.EnsureSuccessStatusCode();
+                fact = response.Content.ReadFromJsonAsync<CatFact>().Result;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                fact = null;
+                return false;
+            }
 
-            var response = client.GetAsync("fact").Result;
-            response.EnsureSuccessStatusCode();
-            fact = response.Content.ReadFromJsonAsync<CatFact>().Result;
-
-            return fact;
+            return true;
         }
     }
 }

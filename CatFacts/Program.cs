@@ -10,6 +10,7 @@
 
             HttpClient http = new HttpClient();
             http.BaseAddress = new Uri("https://catfact.ninja");
+            http.Timeout = TimeSpan.FromSeconds(2);
 
             ConnectionClient client = new ConnectionClient(http);
 
@@ -44,11 +45,18 @@
 
         private static void GetFacts(ConnectionClient client)
         {
-            var fact = client.GetRandomFact();
-            Console.WriteLine(fact.ToString());
+            if (client.TryGetRandomFact(out CatFact fact))
+            {
+                Console.WriteLine(fact.ToString());
 
-            FileManager.Write(fact.Fact);
-            FileManager.DebugReadFile();
+                FileManager.Write(fact.Fact);
+                FileManager.DebugReadFile();
+            }
+            else
+            {
+                Console.WriteLine("Could not get catfact");
+            }
+            
         }
     }
 }
