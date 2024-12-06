@@ -8,7 +8,7 @@ namespace CatFacts
 {
     public class CatFact
     {
-        public string Fact { get; set; }
+        public required string Fact { get; set; }
         public int Length { get; set; }
 
         public override string ToString()
