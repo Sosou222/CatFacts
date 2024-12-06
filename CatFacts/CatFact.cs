@@ -13,7 +13,7 @@ namespace CatFacts
 
         public override string ToString()
         {
-            return $"Fact:{Fact} \n Length:{Length}";
+            return $"Fact:{Fact} Length:{Length}";
         }
     }
 }

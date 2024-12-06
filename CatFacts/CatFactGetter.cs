@@ -77,7 +77,7 @@ namespace CatFacts
             {
                 Console.WriteLine(fact.ToString());
 
-                FileManager.Write(fact.Fact);
+                FileManager.Write(fact.ToString());
                 FileManager.DebugReadFile();
             }
             else
