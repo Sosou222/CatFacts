@@ -8,12 +8,12 @@ namespace CatFacts
 {
     public class FileManager
     {
-        public string filename = "catfacts.txt";
-        public string filepath = "./";
+        public static string Filename { get; set; } = "catfile.txt";
+        public static string Filepath { get; set; } = "./";
 
-        public void Write(string textToWrite)
+        public static void Write(string textToWrite)
         {
-            string file = filepath + filename;
+            string file = Filepath + Filename;
             if(!File.Exists(file)) 
             {
                 File.Create(file).Close();
@@ -22,9 +22,9 @@ namespace CatFacts
             File.AppendAllText(file, textToWrite + Environment.NewLine);
         }
 
-        public void DebugReadFile()
+        public static void DebugReadFile()
         {
-            string file = filepath + filename;
+            string file = Filepath + Filename;
             if(!File.Exists(file))
             {
                 Console.WriteLine("File does not exist");
