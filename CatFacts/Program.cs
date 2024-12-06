@@ -1,4 +1,6 @@
-﻿namespace CatFacts
+﻿using System.Net.Http.Headers;
+
+namespace CatFacts
 {
     internal class Program
     {
@@ -11,6 +13,7 @@
             HttpClient http = new HttpClient();
             http.BaseAddress = new Uri("https://catfact.ninja");
             http.Timeout = TimeSpan.FromSeconds(2);
+            http.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             ConnectionClient client = new ConnectionClient(http);
 
@@ -54,7 +57,7 @@
             }
             else
             {
-                Console.WriteLine("Could not get catfact");
+                Console.WriteLine("Could not get Cat Fact");
             }
             
         }
